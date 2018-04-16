@@ -14,10 +14,12 @@ interface ITodoItemProps {
   toggleDone: () => void;
 }
 
-export const TodoItem = ({ item, remove, toggleDone }: ITodoItemProps) => ( 
+export const TodoItem = ({ item, remove, toggleDone }: ITodoItemProps) => (
   <div>
-    <input type="checkbox" checked={item.done} onClick={toggleDone} />
-    {item.text}
+    <span onClick={toggleDone}>
+      <input type="checkbox" checked={item.done} />
+      {item.text}
+    </span>
     <button type="button" onClick={remove}>Удалить</button>
   </div>
 );

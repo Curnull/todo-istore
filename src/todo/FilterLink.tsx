@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { wrap, FILTERS } from './domain';
+import { wrap } from './domain';
 
 interface ILinkProps {
   disabled: boolean;
@@ -19,22 +19,7 @@ const Link = ({ disabled, children, onClick }: ILinkProps) => (
   </button>
 );
 
-const FilterLink = wrap.withProps((s, m, { getProps }) => ({
+export default wrap.withProps((s, m, { getProps }) => ({
   disabled: getProps().filter === s.filter,
   onClick: () => m.filter.set(getProps().filter),
 })).component(Link);
-
-export default () => (
-  <div>
-    <span>Show: </span>
-    <FilterLink filter={FILTERS.ALL}>
-      All
-    </FilterLink>
-    <FilterLink filter={FILTERS.ONLY_UNDONE}>
-      Active
-    </FilterLink>
-    <FilterLink filter={FILTERS.ONLY_DONE}>
-      Completed
-    </FilterLink>
-  </div>
-);

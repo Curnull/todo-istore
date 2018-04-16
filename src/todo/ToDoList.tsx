@@ -1,14 +1,25 @@
 import * as React from 'react';
-import { wrap } from './domain';
+import { wrap, FILTERS } from './domain';
 import AddItem from './AddItem';
-import Filter from './Filter';
+import FilterLink from './FilterLink';
 import Items from './Items';
 
 // Данный компоннт является "рутовым" для нашего комопнента todo так как содержит все остальные компоненты из текущей папки
 // в нем мы просто отрисовываем все наши обернутые компоненты в нужном порядке и в нужных местах
 export const TodoList = () => (
   <div>
-    <Filter />
+     <div>
+      <span>Показывать: </span>
+      <FilterLink filter={FILTERS.ALL}>
+        Все
+      </FilterLink>
+      <FilterLink filter={FILTERS.ONLY_UNDONE}>
+        Не сделанные
+      </FilterLink>
+      <FilterLink filter={FILTERS.ONLY_DONE}>
+        Сделанные
+      </FilterLink>
+    </div>
     <Items />
     <AddItem />
   </div>

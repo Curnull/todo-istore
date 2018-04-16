@@ -6,13 +6,31 @@ export interface IToDoItem {
   done: boolean;
 }
 
+const initialToDoItems: IToDoItem[]  = [
+  {
+    text: 'Скачать исходники todo-istore',
+    done: true,
+  },
+  {
+    text: 'Установить зависимости запустив комманду npm i',
+    done: true,
+  },
+  {
+    text: 'Запустить проект запстив комманду npm start',
+    done: true,
+  },
+  {
+    text: 'Потыкать кнопочки в приложении',
+    done: false,
+  }
+];
 export const FILTERS = {
   ALL: 'ALL',
   ONLY_DONE: 'ONLY_DONE',
   ONLY_UNDONE: 'ONLY_UNDONE', 
 };
 
-const toDoUnit = () => listValue<IToDoItem>().withMethods((m, { getState }) => ({
+const toDoUnit = (initialItems: IToDoItem[]) => listValue<IToDoItem>(initialItems).withMethods((m, { getState }) => ({
   add: m.add,
   remove: m.remove,
   toggleDone: (item: IToDoItem) => {
@@ -22,7 +40,7 @@ const toDoUnit = () => listValue<IToDoItem>().withMethods((m, { getState }) => (
 }));
 
 const getToDoDomain = () => domain({
-  list: toDoUnit(),
+  list: toDoUnit(initialToDoItems),
   newItemText: value(''),
   filter: value(FILTERS.ALL),
 }).withMethods((m, s) => ({
