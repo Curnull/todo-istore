@@ -1,5 +1,7 @@
 import * as React from 'react';
+// импортируем функиця для обретки компонентов из домена а так-же интерфейст элементов списка
 import { wrap, IToDoItem } from './domain';
+
 /*
   пишем "глупый" компонент который рисует 1 элемент списка.
   В нем будет чекбокс, который по клику просто вызывает входную функцию, и рисуется как отмеченый если в item у нас done = true.
@@ -43,10 +45,12 @@ export const Items = ( { items, remove, toggleDone }: IItemsProps) => (
 
 // делаем обертку над компонентом Items
 export default wrap // начинаем цепочку
-  .withProps((s, m) => ({
-    remove: m.list.remove, // берем метод remove из враппера todo для удаления элементов
-    toggleDone: m.list.toggleDone, // берем метод toggleDone из враппера todo для измнения значения поля done в элементе
-    items: m.getVisibleItems(), // берем из стейта враппер todo все его элементы
+  // добавляем проперти для компонета, используя метод withProps который принимает функцию которая принимает стейт и методы домена
+  // и возвращает какие-либо проперти для компонента
+  .withProps((state, methods) => ({
+    remove: methods.list.remove, // берем метод remove из методов юнита todo для удаления элементов
+    toggleDone: methods.list.toggleDone, // берем метод toggleDone из методов юнита todo для измнения значения поля done в элементе
+    items: methods.getVisibleItems(), // берем текущие видимые элементы с помощью метода getVisibleItems из методов нашего домена
   }))
   .component(Items); // замыкаем цепочку компонентом Items и получаем на выходе обернутый компонент
   
