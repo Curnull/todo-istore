@@ -8,8 +8,8 @@
     "react-scripts-ts": "2.14.0",
     "hoist-non-react-statics": "^2.3.0",
     "redux": "3.7.2",
-    "istore": "1.0.7",
-    "istore-react": "1.0.4",
+    "istore": "1.0.11",
+    "istore-react": "1.0.9",
     "istore-redux": "1.0.0"
   },
   "jest": {
@@ -46,6 +46,6 @@
     "jest": "^22.4.3",
     "ts-jest": "^22.4.2",
     "react-test-renderer": "^16.3.1",
-    "typescript": "^2.8.1"
+    "typescript": "3.0.1"
   }
 }
